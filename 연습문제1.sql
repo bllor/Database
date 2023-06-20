@@ -164,7 +164,8 @@ FROM `product`;
 SELECT `orderProduct` AS `주문상품번호`,
 SUM(`orderCount`)AS `총주문수량` 
 FROM`order`
-GROUP BY `orderProduct`;
+GROUP BY `orderProduct`
+order BY `orderProduct` asc;
 
 #실습1-26
 
@@ -172,7 +173,8 @@ SELECT `company` AS `제조업체`,
 COUNT(*)AS `제품수`,
 MAX(`price`)AS `최고가`
 FROM `product`
-GROUP BY `company`;
+GROUP BY `company`
+order BY `company`asc;
 
 #실습1-27
 
@@ -183,11 +185,13 @@ FROM `product`
 GROUP BY `company`
 HAVING `제품수`>='2';
 
-#실습1-28
-
+#실습1-28 -x
+#제품수량, 고객 ID가 같이 묶여서 정리가 되어야 하므로
+#group by에 `orderproduct`,`orderId`가 들어간다.
 SELECT `orderProduct`,`orderId`,SUM(`orderCount`)AS `총주문수량` 
 FROM `order`
-GROUP BY `orderId`;
+GROUP BY `orderproduct`,`orderId`
+order BY `orderProduct` asc;
 
 #실습1-29
 
@@ -197,12 +201,14 @@ ON a.orderProduct = b.prodNo
 WHERE `orderId`='c102';
 
 
-#실습1-30
+#실습1-30 -x
 
 SELECT `orderid`, `name`, `prodName`, `orderdate` FROM `order` AS a
 JOIN `customer` AS b
 ON a.orderId=b.custid
 JOIN `product` AS c
 ON a.orderProduct=c.prodNo
-WHERE `orderdate` LIKE('2022');
-where `orderdate`IN('2022-07-03');
+WHERE `orderdate` LIKE '2022-07-03%';
+
+WHERE SUBSTR(`orderDate`,1,10)='2022-07-03';
+#WHERE `orderdate` LIKE('2022-07-03');
