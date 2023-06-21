@@ -146,7 +146,9 @@ LIMIT 1;
 
 #이렇게 해도 가장 높은 값을 출력할 수 있다.
 select*from `bank_account`
-where `a_balance` = (select max(`a_balance`)from `bank_account`where `a_item_dist`='s1');
+where `a_balance` = (
+select max(`a_balance`)FROM `bank_account`
+where `a_item_dist`='s1');
 
 
 #실습 2-19
@@ -169,8 +171,8 @@ FROM `bank_transaction`;
 SELECT
 COUNT(if(`t_dist`=1, 1, null))AS `입금건수`,
 COUNT(if(`t_dist`=2, 1, null))AS `입금건수`,
-#COUNT(if(`t_dist`=, 1, null))AS `입금건수`
-#FROM`bank_transaction`;
+COUNT(if(`t_dist`=3, 1, null))AS `입금건수`
+FROM`bank_transaction`;
 
 #count()
 
