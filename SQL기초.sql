@@ -75,7 +75,7 @@ INSERT INTO `TbIUser`SET `userId`='p105',`userName`='이순신',`userHp`='010-12
 INSERT INTO `TbIProduct`VALUES('1','냉장고','800','10','LG','2022-01-06');
 INSERT INTO `TBIPRODUCT`VALUES('2','노트북','1200','20','삼성','2022-01-06');
 INSERT INTO `TBIPRODUCT`VALUES('3','TV','1400','6','LG','2022-01-06');
-INSERT INTO `tbiproduct`(`prdCode`,`prdName`,`prdPrice`,`prdAmount`,`prdCompany`,`prdMakeDate`)
+INSERT INTO `Tbiproduct`(`prdCode`,`prdName`,`prdPrice`,`prdAmount`,`prdCompany`,`prdMakeDate`)
 								VALUES('4','세탁기','1000','8','LG','2022-01-06');
 INSERT INTO `TbIProduct`SET`prdCode`='5',`prdName`='컴퓨터',`prdPrice`='1100',`prdAmount`='0';
 INSERT INTO `TbIProduct`VALUES('6','휴대폰','900','102','삼성','2022-01-06');

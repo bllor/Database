@@ -177,3 +177,4 @@ JOIN `students` AS b
 on a.stdNo=b.stdNo
 WHERE`stdname`='정우성'
 GROUP BY `stdname`;
+hospital

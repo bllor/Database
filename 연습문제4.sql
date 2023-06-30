@@ -299,10 +299,6 @@ SELECT `bookname` FROM `book` order BY `price` DESC LIMIT 1;
 
 #실습4-43
 
-SELECT * FROM `customer`AS a
-right JOIN `order`AS b
-ON a.custid = b.custId
-
 SELECT `name`FROM `order` AS a
 right JOIN `customer`AS b 
 on a.custId = b.custId
@@ -314,7 +310,9 @@ SELECT `name`FROM`Customer`
 #실습4-44
 
 
-INSERT INTO `book` SET `bookId`='11',`bookname`='스포츠의학', `publisher`='한솔의학서적';
+INSERT INTO `book` SET `bookId`='11',`bookname`='스포츠의학',
+ `publisher`='한솔의학서적';
+ 
 #실습4-45
 
 UPDATE `Customer` SET `address`='대한민국 부산' WHERE `custid`='5';
@@ -322,4 +320,4 @@ UPDATE `Customer` SET `address`='대한민국 부산' WHERE `custid`='5';
 
 #실습 4-46
 
-DELETE FROM `customer` WHERE `custid`='5';
+DELETE FROM `customer` WHERE `custid`='5';ermodeldepartmentdepartment

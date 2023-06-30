@@ -178,7 +178,7 @@ WHERE `chart_contents` LIKE '%화상%%';
 
 #patients 테이블 옆에 새로운 테이블을 만들어 준다.
 SELECT * ,CONCAT('19',SUBSTRING(`pat_jumin`,1,2))AS `year`
-FROM `patients`;
+FROM `patients`;patients
 #concat문자열을 붙여주는 함수
 #위와 같이 select*, concat~~as year를 하게 되면 
 #patients테이블에는 영향을 주지 않고 가상화면에 year를 생성해서 만든다.
@@ -186,7 +186,7 @@ FROM `patients`;
 #select로 나오는 화면은 가상화면인데 여기서 다시 셀랙트를 할 수 있다.
 SELECT *,YEAR(NOW())-`year` AS `age` 
 FROM 
-(SELECT * ,CONCAT('19',SUBSTRING(`pat_jumin`,1,2))AS `year`FROM `patients`;) AS a;
+(SELECT * ,CONCAT('19',SUBSTRING(`pat_jumin`,1,2))AS `year`FROM `patients`) AS a;
 
 
 ######################################
