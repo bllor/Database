@@ -142,3 +142,74 @@ CREATE TABLE `Terms`(
 	`terms`		TEXT NOT NULL,
 	`privacy`	TEXT NOT NULL
 );
+
+#View.do의 데이터와 파일이 존재할 경우 파일의 정보까지 가져오는 SQL문
+SELECT a.*,b.ofile FROM `Article`  AS a
+left JOIN `File` AS b ON a.no = b.ano WHERE `no`=24 ;
+
+#search기능으로 조회
+SELECT * FROM Article
+WHERE `parent`=0 AND `title`LIKE '%111%';
+
+SELECT MAX(`no`) From `Article`;
+
+#product 테이블 데이터 늘리기
+INSERT INTO `Product` (`type`, `pName`, `price`, `delivery`, `stock`, `thumb1`,`thumb2`,`thumb3`,`seller`,`rdate`)
+SELECT `type`, `pName`, `price`, `delivery`, `stock`, `thumb1`,`thumb2`,`thumb3`,`seller`,`rdate` FROM 	`Product`;
+
+#Article 테이블 데이터 늘리기
+INSERT INTO `Article` (`cate`,`title`,`content`,`file`,`hit`,`writer`,`regip`,`rdate`)
+SELECT `cate`,`title`,`content`,`file`,`hit`,`writer`,`regip`,`rdate` FROM `Article`;
+
+#파일조회
+SELECT * FROM `Article` AS a 
+LEFT JOIN `File` AS b ON a.no = b.ano 
+where NO=48 and parent = 0;
+
+#파일명 변경
+UPDATE `File` set  ofile='사과과', sfile= '사과과', rdate=NOW() WHERE fno=7;
+
+#sname 조회
+select `sfile` from `File` where `ano`=93;
+
+#delete file
+DELETE from `File` where ano =93;
+
+#역순 조회
+SELECT * FROM `Product` Order BY pNo DESC;
+
+SELECT * FROM `Product` WHERE `stock` > 0 Order BY pNo DESC LIMIT 0, 10 ;
+
+#Article테이블 생성
+CREATE TABLE `km_csArticle`(
+`cNo` INT AUTO_INCREMENT PRIMARY KEY,
+`parent` INT DEFAULT 0,
+`comment` INT DEFAULT 0,
+`cate` INT,
+`title` VARCHAR(255),
+`content` TEXT,
+`file` INT DEFAULT 0,
+`hit` INT DEFAULT 0,
+`writer` VARCHAR(20),
+`regip` VARCHAR(100),
+`rdate` datetime
+);
+
+#CS업로드 파일 테이블 생성
+CREATE TABLE `km_file`(
+	`fno`			INT	AUTO_INCREMENT PRIMARY KEY,
+	`ano`			INT	NOT NULL,
+	`ofile`	VARCHAR(255)	NOT NULL,
+	`sfile`	VARCHAR(255)	NOT NULL,
+	`download`	INT	DEFAULT 0,
+	`rdate`		DATETIME NOT NULL,
+	FOREIGN KEY(`ano`) REFERENCES `km_csArticle`(`cNo`)
+);
+
+INSERT INTO `cs` SET `cCate`='10', `writer`='쓴이', `title`='test', `content`='1', `file`='1';
+
+INSERT INTO `km_csArticle` SET `title`='test1', cate='qna', menu1='쿠폰/혜택/이벤트';
+
+
+INSERT INTO `km_csArticle`(`cate`,`writer`,`menu1`,`menu2`,`title`,`content`,`regip`)
+SELECT `cate`,`writer`,`menu1`,`menu2`,`title`,`content`,`regip` FROM `km_csArticle`;
